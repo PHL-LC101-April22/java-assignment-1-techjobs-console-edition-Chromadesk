@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.text.MessageFormat;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -74,7 +72,7 @@ public class TechJobs {
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         int choiceIdx = -1;
-        Boolean validChoice = false;
+        boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
         // Put the choices in an ordered structure so we can
@@ -119,7 +117,24 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() <= 0) {
+            System.out.println("No Results");
+            return;
+        }
+        for (HashMap<String, String> entry : someJobs) {
+            Set<String> jobKeys = entry.keySet();
+            ArrayList<String> keyArray = new ArrayList<>();
+            for (Object key : jobKeys) {
+                keyArray.add(key.toString());
+            }
+            System.out.println(MessageFormat.format("*****\n" +
+                            "position type: {0}\n" +
+                            "name: {1}\n" +
+                            "employer: {2}\n" +
+                            "location: {3}\n" +
+                            "core competency: {4}\n" +
+                            "*****\n", entry.get(keyArray.get(0)), entry.get(keyArray.get(1)), entry.get(keyArray.get(2)),
+                    entry.get(keyArray.get(3)), entry.get(keyArray.get(4))));
+        }
     }
 }
